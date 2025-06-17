@@ -1,0 +1,10 @@
+Folder untuk menyimpan gambar dan audio alat musik
+
+Struktur folder:
+- borobudur-bg.jpg (gambar background Candi Borobudur)
+- gamelan-main.jpg, gamelan-1.jpg, gamelan-2.jpg, gamelan-3.jpg
+- angklung-main.jpg, angklung-1.jpg, angklung-2.jpg, angklung-3.jpg
+- sasando-main.jpg, sasando-1.jpg, sasando-2.jpg, sasando-3.jpg
+- kendang-main.jpg, kendang-1.jpg, kendang-2.jpg, kendang-3.jpg
+- suling-main.jpg, suling-1.jpg, suling-2.jpg, suling-3.jpg
+- audio/gamelan.mp3, audio/angklung.mp3, audio/sasando.mp3, audio/kendang.mp3, audio/suling.mp3

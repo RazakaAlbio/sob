@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sound of Borobudur - Interactive Exhibition</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Main Title -->
+    <div class="main-title">
+        <h1 id="mainTitle">SOUND OF BOROBUDUR</h1>
+        <p id="mainSubtitle">Jelajahi Warisan Musik Nusantara</p>
+    </div>
+
+    <!-- Language Toggle -->
+    <div class="language-toggle">
+        <button class="lang-btn active" data-lang="id">
+            <span class="flag-icon">🇮🇩</span>
+            <span class="lang-text">ID</span>
+        </button>
+        <button class="lang-btn" data-lang="en">
+            <span class="flag-icon">🇺🇸</span>
+            <span class="lang-text">EN</span>
+        </button>
+        <button class="lang-btn" data-lang="ja">
+            <span class="flag-icon">🇯🇵</span>
+            <span class="lang-text">JA</span>
+        </button>
+    </div>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Left Panel - Borobudur Background -->
+        <div class="left-panel" id="leftPanel">
+            <div class="borobudur-container">
+                <img src="assets/borobudur-bg.svg" alt="Candi Borobudur" class="borobudur-image">
+                
+                <!-- Spotlight Points -->
+                <div class="spotlight spot-1" data-instrument="gamelan" style="top: 30%; left: 25%;"></div>
+                <div class="spotlight spot-2" data-instrument="angklung" style="top: 45%; left: 40%;"></div>
+                <div class="spotlight spot-3" data-instrument="sasando" style="top: 35%; left: 60%;"></div>
+                <div class="spotlight spot-4" data-instrument="kendang" style="top: 50%; left: 75%;"></div>
+                <div class="spotlight spot-5" data-instrument="suling" style="top: 25%; left: 50%;"></div>
+            </div>
+        </div>
+
+        <!-- Right Panel - Instrument Cards -->
+         <div class="right-panel" id="rightPanel">
+             <div class="cards-slider-container" id="cardsSliderContainer">
+                 <button class="slider-close-btn" id="sliderCloseBtn">×</button>
+                 <div class="slider-navigation">
+                     <button class="nav-btn prev-btn" id="prevBtn">‹</button>
+                     <button class="nav-btn next-btn" id="nextBtn">›</button>
+                 </div>
+                 <div class="cards-slider" id="cardsSlider">
+                     <!-- Cards will be dynamically generated here -->
+                 </div>
+                 <div class="slider-indicators" id="sliderIndicators">
+                     <!-- Indicators will be dynamically generated here -->
+                 </div>
+             </div>
+         </div>
+
+        <!-- Legacy Cards Container (hidden) -->
+        <div class="cards-container hidden" id="cardsContainer">
+            <div id="instrumentCard" class="instrument-card">
+                <img id="cardImage" class="card-image" src="" alt="Instrument">
+                <div class="card-info">
+                    <h3 id="cardTitle" class="card-title"></h3>
+                    <p id="cardDescription" class="card-description"></p>
+                    <!-- Start Adventure button will be added here dynamically -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Instrument Detail Modal -->
+        <div class="modal" id="instrumentModal">
+            <div class="modal-content">
+                <span class="close-btn" id="closeModal">&times;</span>
+                <div class="modal-body">
+                    <div class="instrument-images">
+                        <img id="modalMainImage" src="" alt="">
+                        <div class="additional-images" id="additionalImages">
+                            <!-- Additional images will be loaded here -->
+                        </div>
+                    </div>
+                    <div class="instrument-info">
+                        <h2 id="modalTitle"></h2>
+                        <p id="modalDescription"></p>
+                        <div class="audio-controls">
+                            <button class="play-btn" id="playBtn">
+                                <span class="play-icon">▶</span>
+                                <span class="play-text" data-id="play">Putar Suara</span>
+                            </button>
+                            <audio id="instrumentAudio" preload="none">
+                                <source src="" type="audio/mpeg">
+                                Browser Anda tidak mendukung audio.
+                            </audio>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

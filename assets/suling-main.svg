@@ -1,0 +1,77 @@
+<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bambooGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#F4E4BC;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#DEB887;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#CD853F;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="holeGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#8B4513;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#654321;stop-opacity:1" />
+    </radialGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="400" height="300" fill="#F0F8FF"/>
+  
+  <!-- Main bamboo tube -->
+  <rect x="50" y="140" width="300" height="20" fill="url(#bambooGradient)" stroke="#8B4513" stroke-width="2" rx="10"/>
+  
+  <!-- Bamboo joints/segments -->
+  <line x1="100" y1="135" x2="100" y2="165" stroke="#8B4513" stroke-width="3"/>
+  <line x1="150" y1="135" x2="150" y2="165" stroke="#8B4513" stroke-width="3"/>
+  <line x1="200" y1="135" x2="200" y2="165" stroke="#8B4513" stroke-width="3"/>
+  <line x1="250" y1="135" x2="250" y2="165" stroke="#8B4513" stroke-width="3"/>
+  <line x1="300" y1="135" x2="300" y2="165" stroke="#8B4513" stroke-width="3"/>
+  
+  <!-- Finger holes -->
+  <circle cx="120" cy="150" r="4" fill="url(#holeGradient)"/>
+  <circle cx="140" cy="150" r="4" fill="url(#holeGradient)"/>
+  <circle cx="160" cy="150" r="4" fill="url(#holeGradient)"/>
+  <circle cx="180" cy="150" r="4" fill="url(#holeGradient)"/>
+  <circle cx="200" cy="150" r="4" fill="url(#holeGradient)"/>
+  <circle cx="220" cy="150" r="4" fill="url(#holeGradient)"/>
+  
+  <!-- Thumb hole (back side, shown as smaller) -->
+  <circle cx="170" cy="145" r="2" fill="url(#holeGradient)" opacity="0.7"/>
+  
+  <!-- Mouthpiece -->
+  <rect x="45" y="142" width="15" height="16" fill="url(#bambooGradient)" stroke="#8B4513" stroke-width="1" rx="8"/>
+  <circle cx="52" cy="150" r="3" fill="url(#holeGradient)"/>
+  
+  <!-- End cap -->
+  <rect x="345" y="142" width="10" height="16" fill="#8B4513" rx="5"/>
+  
+  <!-- Decorative bamboo texture -->
+  <line x1="60" y1="145" x2="340" y2="145" stroke="#CD853F" stroke-width="1" opacity="0.5"/>
+  <line x1="60" y1="155" x2="340" y2="155" stroke="#CD853F" stroke-width="1" opacity="0.5"/>
+  
+  <!-- Natural bamboo markings -->
+  <ellipse cx="80" cy="150" rx="8" ry="2" fill="none" stroke="#8B4513" stroke-width="1" opacity="0.3"/>
+  <ellipse cx="130" cy="150" rx="8" ry="2" fill="none" stroke="#8B4513" stroke-width="1" opacity="0.3"/>
+  <ellipse cx="190" cy="150" rx="8" ry="2" fill="none" stroke="#8B4513" stroke-width="1" opacity="0.3"/>
+  <ellipse cx="270" cy="150" rx="8" ry="2" fill="none" stroke="#8B4513" stroke-width="1" opacity="0.3"/>
+  <ellipse cx="320" cy="150" rx="8" ry="2" fill="none" stroke="#8B4513" stroke-width="1" opacity="0.3"/>
+  
+  <!-- Musical notes floating around -->
+  <text x="200" y="100" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#4169E1" opacity="0.7">♪</text>
+  <text x="250" y="80" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#4169E1" opacity="0.5">♫</text>
+  <text x="150" y="90" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#4169E1" opacity="0.6">♪</text>
+  <text x="300" y="110" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#4169E1" opacity="0.4">♬</text>
+  
+  <!-- Sound waves -->
+  <path d="M 370 140 Q 380 135 385 140 Q 380 145 370 140" fill="none" stroke="#4169E1" stroke-width="2" opacity="0.5"/>
+  <path d="M 375 130 Q 390 120 400 130 Q 390 140 375 130" fill="none" stroke="#4169E1" stroke-width="1" opacity="0.3"/>
+  <path d="M 375 170 Q 390 180 400 170 Q 390 160 375 170" fill="none" stroke="#4169E1" stroke-width="1" opacity="0.3"/>
+  
+  <!-- Finger position guides -->
+  <text x="120" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#8B4513">1</text>
+  <text x="140" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#8B4513">2</text>
+  <text x="160" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#8B4513">3</text>
+  <text x="180" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#8B4513">4</text>
+  <text x="200" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#8B4513">5</text>
+  <text x="220" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#8B4513">6</text>
+  
+  <!-- Text -->
+  <text x="200" y="220" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#8B4513">SULING</text>
+</svg>

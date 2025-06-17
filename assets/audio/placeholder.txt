@@ -1,0 +1,6 @@
+Folder untuk file audio alat musik:
+- gamelan.mp3
+- angklung.mp3
+- sasando.mp3
+- kendang.mp3
+- suling.mp3
