@@ -21,6 +21,7 @@ const playIcon = document.querySelector('.play-icon');
 // Initialize the application
 document.addEventListener('DOMContentLoaded', function() {
     initializeLanguage();
+    updateUITexts(); // Ensure UI texts are displayed in default language
     loadInstrumentsFromDatabase();
     initializeModal();
     initializeAudio();
@@ -400,16 +401,22 @@ function updateSliderDisplay() {
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
     
-    cards.forEach((card, index) => {
+    // Remove all classes first to ensure smooth transition
+    cards.forEach((card) => {
         card.classList.remove('active', 'prev', 'next');
-        
-        if (index === currentSliderIndex) {
-            card.classList.add('active');
-        } else if (index === currentSliderIndex - 1) {
-            card.classList.add('prev');
-        } else if (index === currentSliderIndex + 1) {
-            card.classList.add('next');
-        }
+    });
+    
+    // Add a small delay to ensure CSS transition works smoothly
+    requestAnimationFrame(() => {
+        cards.forEach((card, index) => {
+            if (index === currentSliderIndex) {
+                card.classList.add('active');
+            } else if (index === currentSliderIndex - 1) {
+                card.classList.add('prev');
+            } else if (index === currentSliderIndex + 1) {
+                card.classList.add('next');
+            }
+        });
     });
     
     indicators.forEach((indicator, index) => {
@@ -457,28 +464,31 @@ function syncSpotlightWithSlider() {
     const spotlights = document.querySelectorAll('.spotlight');
     const currentMapping = window.spotlightMapping || spotlightMapping;
     
-    // Remove active class from all spotlights
+    // Remove active class from all spotlights first
     spotlights.forEach(spotlight => {
         spotlight.classList.remove('active-spotlight');
         spotlight.classList.remove('zoomed-spotlight');
     });
     
-    // Find and highlight the corresponding spotlight
-    const currentInstrumentKey = currentInstrument.id; // This should be the instrument key like 'gamelan'
-    
-    for (const [spotClass, instrumentKey] of Object.entries(currentMapping)) {
-        if (instrumentKey === currentInstrumentKey) {
-            const spotlight = document.querySelector(`.${spotClass}`);
-            if (spotlight) {
-                spotlight.classList.add('active-spotlight');
-                spotlight.classList.add('zoomed-spotlight');
-                // Add pulsing effect
-                spotlight.style.animation = 'ancientPulse 2s infinite';
-                console.log(`Synced spotlight ${spotClass} with instrument ${instrumentKey}`);
+    // Add a small delay to ensure CSS transition works smoothly
+    requestAnimationFrame(() => {
+        // Find and highlight the corresponding spotlight
+        const currentInstrumentKey = currentInstrument.id; // This should be the instrument key like 'gamelan'
+        
+        for (const [spotClass, instrumentKey] of Object.entries(currentMapping)) {
+            if (instrumentKey === currentInstrumentKey) {
+                const spotlight = document.querySelector(`.${spotClass}`);
+                if (spotlight) {
+                    spotlight.classList.add('active-spotlight');
+                    spotlight.classList.add('zoomed-spotlight');
+                    // Add pulsing effect
+                    spotlight.style.animation = 'ancientPulse 2s infinite';
+                    console.log(`Synced spotlight ${spotClass} with instrument ${instrumentKey}`);
+                }
+                break;
             }
-            break;
         }
-    }
+    });
     
     // Debug output
     console.log('Current instrument key:', currentInstrumentKey);
