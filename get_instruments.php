@@ -46,8 +46,12 @@ try {
             'audioFile' => $instrument['audio_file']
         ];
         
-        // Create spotlight mapping
+        // Create spotlight mapping with consistent ordering
         $spotlightMapping['spot-' . $spotCount] = $instrumentKey;
+        
+        // Debug output
+        error_log("Mapping spot-{$spotCount} to {$instrumentKey} (ID: {$instrument['id']})");
+        
         $spotCount++;
     }
     

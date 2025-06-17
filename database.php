@@ -1,7 +1,7 @@
 <?php
 // Database configuration for Sound of Borobudur
 $host = 'localhost';
-$dbname = 'sob';
+$dbname = 'dob';
 $username = 'root';
 $password = '';
 

@@ -1,5 +1,5 @@
 // Global variables
-let currentLanguage = 'id';
+let currentLanguage = 'en';
 let currentAudio = null;
 let isPlaying = false;
 
@@ -234,6 +234,16 @@ function initializeSpotlights() {
             if (currentMapping && currentMapping[spotClass]) {
                 const instrumentId = currentMapping[spotClass];
                 console.log('Instrument ID:', instrumentId);
+                
+                // Add zoom effect to clicked spotlight
+                currentSpotlights.forEach(s => {
+                    s.classList.remove('active-spotlight');
+                    s.classList.remove('zoomed-spotlight');
+                });
+                
+                spotlight.classList.add('active-spotlight');
+                spotlight.classList.add('zoomed-spotlight');
+                
                 showInstrumentCards(instrumentId);
             } else {
                 console.error('No mapping found for:', spotClass);
@@ -243,11 +253,15 @@ function initializeSpotlights() {
         
         // Add hover effect
         spotlight.addEventListener('mouseenter', () => {
-            spotlight.style.transform = 'scale(1.3)';
+            if (!spotlight.classList.contains('active-spotlight')) {
+                spotlight.style.transform = 'scale(1.3)';
+            }
         });
         
         spotlight.addEventListener('mouseleave', () => {
-            spotlight.style.transform = 'scale(1)';
+            if (!spotlight.classList.contains('active-spotlight')) {
+                spotlight.style.transform = 'scale(1)';
+            }
         });
     });
 }
@@ -433,20 +447,27 @@ function syncSpotlightWithSlider() {
     // Remove active class from all spotlights
     spotlights.forEach(spotlight => {
         spotlight.classList.remove('active-spotlight');
+        spotlight.classList.remove('zoomed-spotlight');
     });
     
     // Find and highlight the corresponding spotlight
-    for (const [spotClass, instrumentId] of Object.entries(currentMapping)) {
-        if (instrumentId === currentInstrument.id) {
+    for (const [spotClass, instrumentKey] of Object.entries(currentMapping)) {
+        if (instrumentKey === currentInstrument.id) {
             const spotlight = document.querySelector(`.${spotClass}`);
             if (spotlight) {
                 spotlight.classList.add('active-spotlight');
+                spotlight.classList.add('zoomed-spotlight');
                 // Add pulsing effect
-                spotlight.style.animation = 'cyberpulse 1s infinite';
+                spotlight.style.animation = 'ancientPulse 2s infinite';
+                console.log(`Synced spotlight ${spotClass} with instrument ${instrumentKey}`);
             }
             break;
         }
     }
+    
+    // Debug output
+    console.log('Current instrument:', currentInstrument.id);
+    console.log('Available mappings:', currentMapping);
 }
 
 // Update slider language when language changes
@@ -745,10 +766,11 @@ function hideInstrumentCards() {
     currentSliderIndex = 0;
     sliderInstruments = [];
     
-    // Remove active spotlight highlighting
+    // Remove active spotlight highlighting and zoom
     const spotlights = document.querySelectorAll('.spotlight');
     spotlights.forEach(spotlight => {
         spotlight.classList.remove('active-spotlight');
+        spotlight.classList.remove('zoomed-spotlight');
         spotlight.style.animation = 'cyberpulse 2s infinite'; // Reset to default animation
     });
     
