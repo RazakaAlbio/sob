@@ -135,6 +135,7 @@ const uiText = {
         title: "Sound of Borobudur",
         subtitle: "Jelajahi Warisan Musik Nusantara",
         play: "Putar Suara",
+        pause: "Jeda",
         startAdventure: "Mulai Petualangan",
         browseOthers: "Jelajahi Lainnya",
         back: "Kembali"
@@ -145,6 +146,7 @@ const uiText = {
         title: "Sound of Borobudur",
         subtitle: "Explore Indonesian Musical Heritage",
         play: "Play Sound",
+        pause: "Pause",
         startAdventure: "Start Adventure",
         browseOthers: "Browse Others",
         back: "Back"
@@ -155,6 +157,7 @@ const uiText = {
         title: "Sound of Borobudur",
         subtitle: "インドネシアの音楽遺産を探索",
         play: "音を再生",
+        pause: "一時停止",
         startAdventure: "冒険を始める",
         browseOthers: "他を閲覧",
         back: "戻る"

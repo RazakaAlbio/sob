@@ -9,7 +9,7 @@ require_once 'database.php';
 try {
     // Get all instruments from database
     $instruments = getAllInstruments($pdo);
-    
+
     // Format data for JavaScript
     $instrumentsData = [];
     $spotlightMapping = [];
@@ -23,11 +23,11 @@ try {
         ['top' => '55%', 'left' => '85%'],
         ['top' => '20%', 'left' => '70%']
     ];
-    
+
     $spotCount = 1;
     foreach ($instruments as $instrument) {
         $instrumentKey = strtolower($instrument['name_en']);
-        
+
         // Format instrument data
         $instrumentsData[$instrumentKey] = [
             'id' => $instrument['id'],
@@ -45,16 +45,16 @@ try {
             'additionalImages' => json_decode($instrument['additional_images'], true) ?: [],
             'audioFile' => $instrument['audio_file']
         ];
-        
+
         // Create spotlight mapping with consistent ordering
         $spotlightMapping['spot-' . $spotCount] = $instrumentKey;
-        
+
         // Debug output
         error_log("Mapping spot-{$spotCount} to {$instrumentKey} (ID: {$instrument['id']})");
-        
+
         $spotCount++;
     }
-    
+
     // Return data as JSON
     echo json_encode([
         'success' => true,
@@ -63,11 +63,9 @@ try {
         'spotlightPositions' => array_slice($spotlightPositions, 0, count($instruments)),
         'totalInstruments' => count($instruments)
     ]);
-    
 } catch (Exception $e) {
     echo json_encode([
         'success' => false,
         'error' => $e->getMessage()
     ]);
 }
-?>

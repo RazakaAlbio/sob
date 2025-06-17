@@ -300,18 +300,22 @@ function showInstrumentCards(instrumentId) {
 function activateSplitScreen() {
     const leftPanel = document.getElementById('leftPanel');
     const rightPanel = document.getElementById('rightPanel');
+    const mainTitle = document.querySelector('.main-title');
     
     leftPanel.classList.add('split-mode');
     rightPanel.classList.add('active');
+    mainTitle.classList.add('split-mode');
 }
 
 // Deactivate split screen layout
 function deactivateSplitScreen() {
     const leftPanel = document.getElementById('leftPanel');
     const rightPanel = document.getElementById('rightPanel');
+    const mainTitle = document.querySelector('.main-title');
     
     leftPanel.classList.remove('split-mode');
     rightPanel.classList.remove('active');
+    mainTitle.classList.remove('split-mode');
     isSliderActive = false;
 }
 
@@ -451,8 +455,10 @@ function syncSpotlightWithSlider() {
     });
     
     // Find and highlight the corresponding spotlight
+    const currentInstrumentKey = currentInstrument.id; // This should be the instrument key like 'gamelan'
+    
     for (const [spotClass, instrumentKey] of Object.entries(currentMapping)) {
-        if (instrumentKey === currentInstrument.id) {
+        if (instrumentKey === currentInstrumentKey) {
             const spotlight = document.querySelector(`.${spotClass}`);
             if (spotlight) {
                 spotlight.classList.add('active-spotlight');
@@ -466,8 +472,9 @@ function syncSpotlightWithSlider() {
     }
     
     // Debug output
-    console.log('Current instrument:', currentInstrument.id);
+    console.log('Current instrument key:', currentInstrumentKey);
     console.log('Available mappings:', currentMapping);
+    console.log('Slider instruments:', sliderInstruments);
 }
 
 // Update slider language when language changes
@@ -566,6 +573,12 @@ function showInstrumentDetail(instrument) {
         };
     }
     
+    // Hide main title when modal opens
+    const mainTitle = document.querySelector('.main-title');
+    if (mainTitle) {
+        mainTitle.classList.add('hidden');
+    }
+    
     // Show modal
     modal.classList.add('show');
     
@@ -652,6 +665,12 @@ function showInstrumentModal(instrument) {
     // Reset audio state
     resetAudioState();
     
+    // Hide main title when modal opens
+    const mainTitle = document.querySelector('.main-title');
+    if (mainTitle) {
+        mainTitle.classList.add('hidden');
+    }
+    
     // Show modal
     modal.classList.add('show');
     document.body.style.overflow = 'hidden';
@@ -660,6 +679,12 @@ function showInstrumentModal(instrument) {
 function hideInstrumentModal() {
     modal.classList.remove('show');
     document.body.style.overflow = 'auto';
+    
+    // Show main title when modal closes
+    const mainTitle = document.querySelector('.main-title');
+    if (mainTitle) {
+        mainTitle.classList.remove('hidden');
+    }
     
     // Stop audio if playing
     if (currentAudio) {
@@ -743,12 +768,12 @@ function resetAudioState() {
 function updatePlayButton() {
     if (isPlaying) {
         playIcon.textContent = '⏸';
-        playText.textContent = uiTexts.pause[currentLanguage];
-        playBtn.style.background = 'linear-gradient(45deg, #ff6b6b, #ff8e8e)';
+        playText.textContent = uiText[currentLanguage].pause || 'Pause';
+        playBtn.style.background = 'linear-gradient(45deg, #f4e4c1, #d4af37)';
     } else {
         playIcon.textContent = '▶';
-        playText.textContent = uiTexts.play[currentLanguage];
-        playBtn.style.background = 'linear-gradient(45deg, #ffd700, #ffed4e)';
+        playText.textContent = uiText[currentLanguage].play;
+        playBtn.style.background = 'linear-gradient(45deg, #d4af37, #f4e4c1)';
     }
 }
 
