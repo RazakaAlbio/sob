@@ -26,7 +26,8 @@ try {
 
     $spotCount = 1;
     foreach ($instruments as $instrument) {
-        $instrumentKey = strtolower($instrument['name_en']);
+        // Use the actual ID from database as the key
+        $instrumentKey = $instrument['id'];
 
         // Format instrument data
         $instrumentsData[$instrumentKey] = [

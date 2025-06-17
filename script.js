@@ -329,9 +329,18 @@ function initializeSlider(instrumentsData, selectedInstrumentId) {
     // Convert instruments data to array
     sliderInstruments = Object.values(instrumentsData);
     
+    // Debug logging
+    console.log('Selected instrument ID:', selectedInstrumentId);
+    console.log('Available instruments:', sliderInstruments.map(inst => inst.id));
+    
     // Find the index of selected instrument
     currentSliderIndex = sliderInstruments.findIndex(inst => inst.id === selectedInstrumentId);
-    if (currentSliderIndex === -1) currentSliderIndex = 0;
+    console.log('Found instrument at index:', currentSliderIndex);
+    
+    if (currentSliderIndex === -1) {
+        console.warn('Instrument not found, defaulting to first instrument');
+        currentSliderIndex = 0;
+    }
     
     // Clear existing content
     cardsSlider.innerHTML = '';
