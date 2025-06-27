@@ -101,12 +101,18 @@ function createDynamicSpotlights(positions, mapping) {
             spotlight.setAttribute('data-instrument', instrumentKey);
         }
         
+        // Ensure the new spotlight doesn't have the listener flag
+        spotlight.removeAttribute('data-listener-attached');
+        
         borobudurContainer.appendChild(spotlight);
         spotIndex++;
     });
     
     // Update spotlights variable
     window.spotlights = document.querySelectorAll('.spotlight');
+    
+    // Immediately attach event listeners to new spotlights
+    attachSpotlightEventListeners();
 }
 
 // Language Management
@@ -199,32 +205,50 @@ function updateUITexts() {
     
     // Update card content if instrument is currently displayed
     if (window.currentInstrument) {
+        // Map 'ja' to 'jp' for compatibility with data structure
+        const dataLang = currentLanguage === 'ja' ? 'jp' : currentLanguage;
         const cardTitle = document.getElementById('cardTitle');
         const cardDescription = document.getElementById('cardDescription');
         const modalTitle = document.getElementById('modalTitle');
         const modalDescription = document.getElementById('modalDescription');
         
         if (cardTitle && window.currentInstrument.name) {
-            cardTitle.textContent = window.currentInstrument.name[currentLanguage];
+            cardTitle.textContent = window.currentInstrument.name[dataLang];
         }
         if (cardDescription && window.currentInstrument.description) {
-            cardDescription.textContent = window.currentInstrument.description[currentLanguage];
+            cardDescription.textContent = window.currentInstrument.description[dataLang];
         }
         if (modalTitle && window.currentInstrument.name) {
-            modalTitle.textContent = window.currentInstrument.name[currentLanguage];
+            modalTitle.textContent = window.currentInstrument.name[dataLang];
         }
         if (modalDescription && window.currentInstrument.description) {
-            modalDescription.textContent = window.currentInstrument.description[currentLanguage];
+            modalDescription.textContent = window.currentInstrument.description[dataLang];
         }
     }
 }
 
 // Spotlight Management
 function initializeSpotlights() {
-    const currentSpotlights = window.spotlights || document.querySelectorAll('.spotlight');
+    attachSpotlightEventListeners();
+}
+
+// Attach event listeners to spotlights
+function attachSpotlightEventListeners() {
+    // Always query fresh spotlights from DOM
+    const currentSpotlights = document.querySelectorAll('.spotlight');
     const currentMapping = window.spotlightMapping || spotlightMapping;
     
+    console.log('Attaching event listeners to', currentSpotlights.length, 'spotlights');
+    console.log('Current mapping:', currentMapping);
+    
     currentSpotlights.forEach(spotlight => {
+        // Check if event listener is already attached
+        if (spotlight.hasAttribute('data-listener-attached')) {
+            return;
+        }
+        
+        spotlight.setAttribute('data-listener-attached', 'true');
+        
         spotlight.addEventListener('click', (e) => {
             e.preventDefault();
             e.stopPropagation();
@@ -237,7 +261,7 @@ function initializeSpotlights() {
                 console.log('Instrument ID:', instrumentId);
                 
                 // Add zoom effect to clicked spotlight
-                currentSpotlights.forEach(s => {
+                document.querySelectorAll('.spotlight').forEach(s => {
                     s.classList.remove('active-spotlight');
                     s.classList.remove('zoomed-spotlight');
                 });
@@ -265,6 +289,9 @@ function initializeSpotlights() {
             }
         });
     });
+    
+    // Update window.spotlights reference
+    window.spotlights = currentSpotlights;
 }
 
 // Global slider state
@@ -377,15 +404,17 @@ function initializeSlider(instrumentsData, selectedInstrumentId) {
 // Create individual slider card
 function createSliderCard(instrument, index) {
     const currentLang = getCurrentLanguage();
+    // Map 'ja' to 'jp' for compatibility with data structure
+    const dataLang = currentLang === 'ja' ? 'jp' : currentLang;
     const card = document.createElement('div');
     card.className = 'slider-card';
     card.setAttribute('data-index', index);
     card.setAttribute('data-instrument', instrument.id);
     
     card.innerHTML = `
-        <img src="${instrument.mainImage}" alt="${instrument.name[currentLang]}" class="slider-card-image">
-        <h3 class="slider-card-title">${instrument.name[currentLang]}</h3>
-        <p class="slider-card-description">${instrument.description[currentLang]}</p>
+        <img src="${instrument.mainImage}" alt="${instrument.name[dataLang]}" class="slider-card-image">
+        <h3 class="slider-card-title">${instrument.name[dataLang]}</h3>
+        <p class="slider-card-description">${instrument.description[dataLang]}</p>
         <button class="start-adventure-btn" onclick="showInstrumentDetail(sliderInstruments[${index}])">
             ${uiText[currentLang].startAdventure}
         </button>
@@ -501,6 +530,8 @@ function updateSliderLanguage() {
     if (!isSliderActive) return;
     
     const currentLang = getCurrentLanguage();
+    // Map 'ja' to 'jp' for compatibility with data structure
+    const dataLang = currentLang === 'ja' ? 'jp' : currentLang;
     const cards = document.querySelectorAll('.slider-card');
     
     cards.forEach((card, index) => {
@@ -510,8 +541,8 @@ function updateSliderLanguage() {
             const description = card.querySelector('.slider-card-description');
             const button = card.querySelector('.start-adventure-btn');
             
-            if (title) title.textContent = instrument.name[currentLang];
-            if (description) description.textContent = instrument.description[currentLang];
+            if (title) title.textContent = instrument.name[dataLang];
+            if (description) description.textContent = instrument.description[dataLang];
             if (button) button.textContent = uiText[currentLang].startAdventure;
         }
     });
@@ -521,16 +552,18 @@ function updateSliderLanguage() {
 function showInstrumentDetail(instrument) {
     const modal = document.getElementById('instrumentModal');
     const currentLang = getCurrentLanguage();
+    // Map 'ja' to 'jp' for compatibility with data structure
+    const dataLang = currentLang === 'ja' ? 'jp' : currentLang;
     
     console.log('Showing instrument detail for:', instrument);
     
     // Update modal content
-    document.getElementById('modalTitle').textContent = instrument.name[currentLang];
+    document.getElementById('modalTitle').textContent = instrument.name[dataLang];
     
     // Use description or fullDescription, whichever is available
     const description = instrument.fullDescription || instrument.description;
-    if (description && description[currentLang]) {
-        document.getElementById('modalDescription').textContent = description[currentLang];
+    if (description && description[dataLang]) {
+        document.getElementById('modalDescription').textContent = description[dataLang];
     }
     
     document.getElementById('modalMainImage').src = instrument.mainImage;
@@ -577,9 +610,14 @@ function showInstrumentDetail(instrument) {
         browseBtn.textContent = uiText[currentLang].browseOthers || 
                                (currentLang === 'id' ? 'Jelajahi Lainnya' : 
                                 currentLang === 'en' ? 'Browse Others' : 
-                                '他を探索');
+                                '他を閲覧');
         browseBtn.onclick = () => {
             modal.classList.remove('show');
+            // Show main title when modal closes
+            const mainTitle = document.querySelector('.main-title');
+            if (mainTitle) {
+                mainTitle.classList.remove('hidden');
+            }
             // Return to slider if it was active, otherwise show all instruments
             if (isSliderActive) {
                 // Modal is hidden, slider remains active
@@ -857,15 +895,17 @@ function showCarouselMode() {
 // Create carousel card
 function createCarouselCard(instrument, spotlightId) {
     const currentLang = getCurrentLanguage();
+    // Map 'ja' to 'jp' for compatibility with data structure
+    const dataLang = currentLang === 'ja' ? 'jp' : currentLang;
     const card = document.createElement('div');
     card.className = 'instrument-card carousel-mode';
     card.dataset.spotlightId = spotlightId;
     
     card.innerHTML = `
-        <img src="${instrument.mainImage}" alt="${instrument.name[currentLang]}" class="card-image">
+        <img src="${instrument.mainImage}" alt="${instrument.name[dataLang]}" class="card-image">
         <div class="card-info">
-            <h3 class="card-title">${instrument.name[currentLang]}</h3>
-            <p class="card-description">${instrument.description[currentLang]}</p>
+            <h3 class="card-title">${instrument.name[dataLang]}</h3>
+            <p class="card-description">${instrument.description[dataLang]}</p>
         </div>
     `;
     

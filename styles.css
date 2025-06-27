@@ -638,12 +638,15 @@ body {
     line-height: 1.4;
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
     margin-bottom: 15px;
-    padding: 0 5px;
-    min-height: 50px;
-    overflow: visible;
+    padding: 0 8px;
+    min-height: 60px;
+    max-height: 80px;
+    overflow: hidden;
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
+    text-align: center;
+    flex-grow: 1;
 }
 
 /* Slider Indicators */

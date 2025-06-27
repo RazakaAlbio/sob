@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Sound of Borobudur</title>
+    <link rel="stylesheet" href="admin-styles.css">
+</head>
+<body>
+    <div class="admin-container">
+        <header class="admin-header">
+            <h1>Admin Panel - Sound of Borobudur</h1>
+            <nav>
+                <a href="index.html" class="nav-link">Back to Main Site</a>
+                <a href="#" class="nav-link" onclick="showSection('add-instrument')">Add Instrument</a>
+                <a href="#" class="nav-link" onclick="showSection('manage-instruments')">Manage Instruments</a>
+            </nav>
+        </header>
+
+        <main class="admin-main">
+            <!-- Add Instrument Section -->
+            <section id="add-instrument" class="admin-section active">
+                <h2>Add New Instrument</h2>
+                <form id="instrumentForm" class="instrument-form" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="name_id">Name (Indonesian):</label>
+                        <input type="text" id="name_id" name="name_id" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name_en">Name (English):</label>
+                        <input type="text" id="name_en" name="name_en" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name_ja">Name (Japanese):</label>
+                        <input type="text" id="name_ja" name="name_ja" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description_id">Description (Indonesian):</label>
+                        <textarea id="description_id" name="description_id" rows="4" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description_en">Description (English):</label>
+                        <textarea id="description_en" name="description_en" rows="4" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description_ja">Description (Japanese):</label>
+                        <textarea id="description_ja" name="description_ja" rows="4" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="main_image">Main Image (SVG recommended):</label>
+                        <input type="file" id="main_image" name="main_image" accept=".svg,.png,.jpg,.jpeg" required>
+                        <div class="file-preview" id="main_image_preview"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="additional_images">Additional Images (Optional):</label>
+                        <input type="file" id="additional_images" name="additional_images[]" accept=".png,.jpg,.jpeg" multiple>
+                        <div class="file-preview" id="additional_images_preview"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="audio_file">Audio File:</label>
+                        <input type="file" id="audio_file" name="audio_file" accept=".mp3,.wav,.ogg" required>
+                        <div class="file-preview" id="audio_preview"></div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Add Instrument</button>
+                        <button type="reset" class="btn btn-secondary">Reset Form</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Manage Instruments Section -->
+            <section id="manage-instruments" class="admin-section">
+                <h2>Manage Instruments</h2>
+                <div class="instruments-list" id="instrumentsList">
+                    <!-- Instruments will be loaded here -->
+                </div>
+            </section>
+        </main>
+
+        <!-- Success/Error Messages -->
+        <div id="messageContainer" class="message-container"></div>
+    </div>
+
+    <script src="admin-script.js"></script>
+</body>
+</html>
