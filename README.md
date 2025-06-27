@@ -1,133 +1,362 @@
-# Museum Alat Musik - Pameran Interaktif
+# Sound of Borobudur - UI/UX Design Documentation
 
-Sebuah aplikasi web interaktif untuk pameran alat musik tradisional Indonesia di museum, dirancang khusus untuk tablet dengan antarmuka yang menarik dan informatif.
+## Overview
+Interactive exhibition website showcasing traditional Indonesian musical instruments with immersive Borobudur temple experience.
 
-## Fitur Utama
+## Container Sizes & Layout Specifications
 
-### 🎵 Landing Page Interaktif
-- Background Candi Borobudur yang indah
-- Sistem spotlight dengan animasi pulse
-- 5 titik spotlight yang dapat diklik untuk menampilkan alat musik
+### 🖥️ Desktop (1200px and above)
 
-### 🎼 Koleksi Alat Musik
-- **Gamelan** - Ensemble musik tradisional Jawa
-- **Angklung** - Alat musik bambu dari Sunda
-- **Sasando** - Alat musik petik dari Nusa Tenggara Timur
-- **Kendang** - Alat musik perkusi tradisional
-- **Suling** - Alat musik tiup dari bambu
+#### Main Layout
+- **Viewport**: Full screen (100vw × 100vh)
+- **Background**: Linear gradient overlay on full viewport
+- **Main Container**: No max-width restriction
 
-### 🌐 Multi-Bahasa
-- **Indonesia** - Bahasa utama
-- **English** - Bahasa Inggris
-- **Japanese (日本語)** - Bahasa Jepang
+#### Header Components
+- **Main Title Container**: 
+  - Position: Fixed, centered horizontally
+  - Top offset: 50px
+  - Transform: translateX(-50%)
+  - Z-index: 1000
 
-### 📱 Antarmuka Responsif
-- Dioptimalkan untuk tablet
-- Cards yang dapat digeser (swipeable)
-- Modal detail dengan gambar dan audio
-- Animasi smooth dan transisi yang menarik
+- **Title Text (H1)**:
+  - Font size: 2rem
+  - Letter spacing: 3px
+  - Margin: 0
 
-### 🔊 Fitur Audio
-- Tombol play/pause untuk mendengarkan suara alat musik
-- Kontrol audio yang mudah digunakan
-- Audio placeholder (perlu diganti dengan file audio asli)
+- **Subtitle Text (P)**:
+  - Font size: 0.8rem
+  - Letter spacing: 1.5px
+  - Margin: 2px 0 0 0
 
-## Struktur Project
+- **Language Toggle**:
+  - Position: Fixed top-left
+  - Top: 10px, Left: 20px
+  - Button size: Auto padding (6px 10px)
+  - Gap between buttons: 8px
 
-```
-Kemenbud/
-├── index.html          # File HTML utama
-├── styles.css          # Stylesheet dengan animasi dan responsive design
-├── script.js           # JavaScript untuk interaksi dan fungsionalitas
-├── data.js             # Database alat musik dengan multi-bahasa
-├── assets/             # Folder untuk aset
-│   ├── borobudur-bg.svg    # Background Candi Borobudur
-│   ├── gamelan-main.svg    # Gambar Gamelan
-│   ├── angklung-main.svg   # Gambar Angklung
-│   ├── sasando-main.svg    # Gambar Sasando
-│   ├── kendang-main.svg    # Gambar Kendang
-│   ├── suling-main.svg     # Gambar Suling
-│   └── audio/              # Folder untuk file audio
-│       └── placeholder.txt # Placeholder untuk file audio
-└── README.md           # Dokumentasi project
-```
+#### Interactive Elements
+- **Borobudur Image Container**:
+  - Max width: 800px
+  - Max height: 600px
+  - Border radius: 15px
+  - Border: 3px solid rgba(212, 175, 55, 0.4)
 
-## Teknologi yang Digunakan
+- **Spotlight Points**:
+  - Size: 30px × 30px
+  - Border radius: 50% (circular)
+  - Border: 1px solid #d4af37
+  - Hover scale: 1.2
+  - Active scale: 1.3
+  - Zoomed scale: 1.5
 
-- **HTML5** - Struktur halaman
-- **CSS3** - Styling dengan gradient, animasi, dan responsive design
-- **Vanilla JavaScript** - Interaksi tanpa framework
-- **SVG** - Gambar vektor untuk kualitas tinggi
+#### Cards & Modals
+- **Cards Container**:
+  - Height: 250px
+  - Padding: 30px
+  - Margin: 0 40px
+  - Gap: 20px (carousel mode)
 
-## Cara Menjalankan
+- **Instrument Card**:
+  - Min width: 350px
+  - Height: 190px
+  - Padding: 30px
+  - Border radius: 15px
+  - Border: 2px solid rgba(212, 175, 55, 0.4)
 
-1. **Menggunakan XAMPP:**
-   - Pastikan XAMPP sudah terinstall
-   - Copy folder project ke `c:\xampp\htdocs\Kemenbud`
-   - Jalankan Apache di XAMPP Control Panel
-   - Buka browser dan akses `http://localhost/Kemenbud`
+- **Modal Content**:
+  - Max width: 800px
+  - Width: 95%
+  - Max height: 90vh
+  - Padding: 30px
+  - Border radius: 20px
+  - Border: 3px solid rgba(212, 175, 55, 0.8)
 
-2. **Menggunakan Live Server:**
-   - Buka folder project di VS Code
-   - Install extension "Live Server"
-   - Klik kanan pada `index.html` dan pilih "Open with Live Server"
+- **Modal Body Grid**:
+  - Grid: 1fr 1fr (two columns)
+  - Gap: 50px
+  - Padding: 50px
 
-## Cara Penggunaan
+#### Slider Components
+- **Slider Card**:
+  - Width: 320px
+  - Height: 220px
+  - Padding: 30px
+  - Border radius: 15px
 
-1. **Navigasi Utama:**
-   - Klik titik spotlight pada gambar Candi Borobudur
-   - Cards alat musik akan muncul di bagian bawah
+- **Navigation Buttons**:
+  - Size: 55px × 55px
+  - Border radius: 12px
+  - Border: 2px solid rgba(212, 175, 55, 0.5)
 
-2. **Melihat Detail:**
-   - Klik pada card alat musik untuk membuka modal detail
-   - Modal berisi informasi lengkap, gambar, dan kontrol audio
+### 📱 Tablet Portrait (768px - 1024px)
 
-3. **Mengganti Bahasa:**
-   - Gunakan tombol toggle bahasa di pojok kanan atas
-   - Pilih antara ID (Indonesia), EN (English), atau JP (Japanese)
+#### Header Adjustments
+- **Title Text (H1)**:
+  - Font size: 1.8rem
+  - Letter spacing: 2px
 
-4. **Memutar Audio:**
-   - Klik tombol "Putar Suara" di modal detail
-   - Audio akan diputar (saat ini menggunakan placeholder)
+- **Subtitle Text (P)**:
+  - Font size: 0.75rem
 
-## Kustomisasi
+- **Language Toggle**:
+  - Top: 15px, Left: 15px
+  - Button padding: 8px 12px
+  - Font size: 0.9rem
 
-### Mengganti Gambar
-- Ganti file SVG di folder `assets/` dengan gambar asli alat musik
-- Update path di file `data.js` jika menggunakan format berbeda
+#### Interactive Elements
+- **Borobudur Container**:
+  - Max width: 90%
+  - Centered with auto margins
 
-### Menambah Audio
-- Tambahkan file audio (.mp3) ke folder `assets/audio/`
-- Update path audio di file `data.js`
+- **Spotlight Points**:
+  - Size: 20px × 20px
 
-### Menambah Alat Musik
-1. Tambahkan data baru di `data.js` dalam object `instrumentsData`
-2. Tambahkan mapping spotlight di `spotlightMapping`
-3. Tambahkan spotlight baru di HTML dengan class `spotlight spot-X`
+#### Cards & Layout
+- **Cards Container**:
+  - Height: 200px
+  - Padding: 20px
+  - Margin: 0 20px
 
-### Menambah Bahasa
-1. Tambahkan kode bahasa baru di setiap object dalam `data.js`
-2. Tambahkan tombol bahasa baru di HTML
-3. Update fungsi `changeLanguage()` di `script.js`
+- **Instrument Card**:
+  - Min width: 280px
+  - Height: 160px
+  - Padding: 20px
 
-## Browser Support
+- **Card Title**:
+  - Font size: 1.3rem
+  - Margin bottom: 12px
 
-- Chrome 60+
-- Firefox 55+
-- Safari 12+
-- Edge 79+
+- **Card Description**:
+  - Font size: 15px
+  - Min height: 70px
+  - Line height: 1.6
 
-## Catatan Pengembangan
+#### Modal Adjustments
+- **Modal Main Image**:
+  - Height: 250px
 
-- Gambar saat ini menggunakan SVG placeholder yang dibuat khusus
-- File audio menggunakan placeholder dan perlu diganti dengan rekaman asli
-- Design dioptimalkan untuk tablet dengan resolusi 1024x768 atau lebih tinggi
-- Semua animasi menggunakan CSS3 untuk performa yang optimal
+- **Modal Body Grid**:
+  - Grid: 1fr 1fr
+  - Gap: 30px
+  - Padding: 30px
 
-## Lisensi
+#### Slider Adjustments
+- **Slider Card**:
+  - Min width: 260px
+  - Height: 180px
+  - Padding: 20px
 
-Project ini dibuat untuk keperluan museum dan edukasi. Silakan gunakan dan modifikasi sesuai kebutuhan.
+### 🖥️ Tablet Landscape (1024px - 1200px)
 
----
+#### Header
+- **Title Text (H1)**:
+  - Font size: 2.1rem
+  - Letter spacing: 2.5px
 
-**Dibuat dengan ❤️ untuk Museum Alat Musik Indonesia**
+#### Interactive Elements
+- **Borobudur Container**:
+  - Max width: 90%
+
+- **Spotlight Points**:
+  - Size: 25px × 25px
+
+#### Cards & Layout
+- **Cards Container**:
+  - Height: 210px
+  - Padding: 22px
+  - Margin: 0 25px
+
+- **Instrument Card**:
+  - Min width: 300px
+  - Height: 165px
+  - Padding: 22px
+
+- **Card Title**:
+  - Font size: 1.35rem
+
+#### Modal & Slider
+- **Modal Body Grid**:
+  - Gap: 35px
+  - Padding: 35px
+
+- **Slider Card**:
+  - Min width: 280px
+  - Height: 190px
+  - Padding: 22px
+
+### 📱 Mobile (max-width: 768px)
+
+#### Header Mobile
+- **Title Text (H1)**:
+  - Font size: 1.5rem
+  - Letter spacing: 1px
+
+- **Subtitle Text (P)**:
+  - Font size: 0.7rem
+
+- **Language Toggle**:
+  - Top: 10px, Left: 10px
+  - Gap: 5px
+  - Button padding: 5px 8px
+  - Font size: 0.8rem
+
+#### Interactive Elements Mobile
+- **Spotlight Points**:
+  - Size: 45px × 45px (larger for touch)
+
+#### Cards Mobile
+- **Cards Container**:
+  - Height: 180px
+  - Padding: 15px
+  - Margin: 0 10px
+
+- **Instrument Card**:
+  - Min width: 220px
+  - Height: 130px
+  - Padding: 15px
+
+- **Card Title**:
+  - Font size: 1.1rem
+  - Margin bottom: 8px
+
+- **Card Description**:
+  - Font size: 13px
+  - Min height: 50px
+
+- **Action Button**:
+  - Padding: 8px 16px
+  - Font size: 12px
+
+#### Modal Mobile
+- **Modal Body Grid**:
+  - Grid: 1fr (single column)
+  - Gap: 20px
+  - Padding: 20px
+
+- **Modal Main Image**:
+  - Height: 200px
+
+- **Additional Images**:
+  - Size: 80px × 80px
+
+#### Slider Mobile
+- **Slider Card**:
+  - Min width: 200px
+  - Height: 150px
+  - Padding: 15px
+
+- **Slider Card Title**:
+  - Font size: 1rem
+  - Margin bottom: 8px
+
+- **Slider Card Description**:
+  - Font size: 12px
+  - Min height: 40px
+
+## 🎨 Touch Device Optimizations
+
+### Minimum Touch Targets (44px × 44px)
+- Language buttons
+- Action buttons (Start Adventure, Back, Play)
+- Close buttons
+- Navigation buttons (min 50px × 50px)
+- Additional image thumbnails (min 60px × 60px)
+
+### Enhanced Touch Areas
+- **Spotlight Points**: Minimum 40px × 40px on touch devices
+- **All Interactive Elements**: Minimum 44px touch target
+
+## 🎯 Design Guidelines for Figma
+
+### Breakpoint Strategy
+1. **Mobile First**: Start with 375px width
+2. **Tablet Portrait**: 768px - 1024px
+3. **Tablet Landscape**: 1024px - 1200px
+4. **Desktop**: 1200px and above
+
+### Grid System
+- **Desktop**: 2-column grid for modal content
+- **Tablet**: 2-column grid maintained
+- **Mobile**: Single column layout
+
+### Spacing Scale
+- **Large**: 50px (desktop modal padding)
+- **Medium**: 30px (desktop card padding)
+- **Small**: 20px (tablet padding)
+- **XSmall**: 15px (mobile padding)
+
+### Component Scaling
+- **Cards**: Scale down proportionally across breakpoints
+- **Typography**: Responsive font sizes with maintained hierarchy
+- **Interactive Elements**: Larger on mobile for touch accessibility
+
+### Color Palette
+- **Primary Gold**: #d4af37
+- **Secondary Gold**: #b8860b
+- **Accent Gold**: #ffd700
+- **Background Dark**: #2c1810
+- **Background Medium**: #4a3728
+- **Text Light**: #f4e4c1
+
+### Border Radius Standards
+- **Cards**: 15px
+- **Modals**: 20px
+- **Buttons**: 8px - 20px (varies by component)
+- **Circular Elements**: 50%
+
+## 📐 Figma Frame Recommendations
+
+### Desktop Frames
+- **1920 × 1080** (Full HD)
+- **1440 × 900** (MacBook Pro)
+- **1366 × 768** (Common laptop)
+
+### Tablet Frames
+- **1024 × 768** (iPad Landscape)
+- **768 × 1024** (iPad Portrait)
+- **834 × 1194** (iPad Pro Portrait)
+
+### Mobile Frames
+- **375 × 667** (iPhone SE/8)
+- **390 × 844** (iPhone 12/13)
+- **414 × 896** (iPhone 11 Pro Max)
+
+## 🔧 Technical Notes
+
+### CSS Units Used
+- **rem**: For scalable typography
+- **px**: For precise borders and fixed elements
+- **vh/vw**: For full viewport layouts
+- **%**: For responsive widths
+
+### Animation Specifications
+- **Transition Duration**: 0.3s - 0.8s
+- **Easing**: cubic-bezier(0.4, 0, 0.2, 1)
+- **Transform Origin**: Center for scaling
+- **Backdrop Filter**: blur(10px - 15px)
+
+### Z-Index Hierarchy
+- **Background**: 0
+- **Content**: 1-10
+- **Spotlights**: 10
+- **Navigation**: 15-20
+- **Modals**: 100-1000
+- **Fixed Headers**: 1000+
+
+## 📋 Admin Panel Specifications
+
+### Admin Interface Components
+- **Navigation Tabs**: Full width, responsive
+- **Form Containers**: Max width with centered alignment
+- **Input Fields**: Standard form sizing with proper spacing
+- **File Upload Areas**: Drag & drop zones with preview
+- **Data Tables**: Responsive with horizontal scroll on mobile
+- **Action Buttons**: Consistent sizing and spacing
+
+### Admin Modal Sizes
+- **Standard Modal**: 600px max width
+- **Large Modal**: 800px max width for detailed forms
+- **Mobile Modal**: Full width with padding
+
+This documentation provides comprehensive sizing information for creating pixel-perfect designs in Figma that will translate accurately to the final implementation.
