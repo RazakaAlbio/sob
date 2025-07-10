@@ -13,7 +13,7 @@ const modalTitle = document.getElementById('modalTitle');
 const modalDescription = document.getElementById('modalDescription');
 const modalMainImage = document.getElementById('modalMainImage');
 const additionalImages = document.getElementById('additionalImages');
-const playBtn = document.getElementById('playBtn');
+const playBtn = document.getElementById('playAudioBtn');
 const instrumentAudio = document.getElementById('instrumentAudio');
 const playText = document.querySelector('.play-text');
 const playIcon = document.querySelector('.play-icon');
@@ -52,7 +52,7 @@ function initializeKeyboardNavigation() {
 
 // Load instruments from database
 function loadInstrumentsFromDatabase() {
-    fetch('get_instruments.php')
+    fetch('../backend/get-instruments.php')
         .then(response => response.json())
         .then(data => {
             if (data.success) {

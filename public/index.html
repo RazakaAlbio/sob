@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+    <title>Sound of Borobudur - Interactive Exhibition</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Left Panel -->
+        <div class="left-panel" id="leftPanel">
+            <!-- Main Title -->
+            <div class="main-title">
+                <h1 id="mainTitle">SOUND OF BOROBUDUR</h1>
+                <p id="mainSubtitle">Jelajahi Warisan Musik Nusantara</p>
+            </div>
+
+            <!-- Language Toggle -->
+            <div class="language-toggle">
+                <button class="lang-btn" data-lang="id">
+                    <span class="flag-icon">
+                        <svg width="20" height="15" viewBox="0 0 20 15" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="20" height="7.5" fill="#FF0000"/>
+                            <rect y="7.5" width="20" height="7.5" fill="#FFFFFF"/>
+                        </svg>
+                    </span>
+                    <span class="lang-text">ID</span>
+                </button>
+                <button class="lang-btn active" data-lang="en">
+                    <span class="flag-icon">
+                        <svg width="20" height="15" viewBox="0 0 20 15" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="20" height="15" fill="#012169"/>
+                            <path d="M0,0 L20,15 M20,0 L0,15" stroke="#FFFFFF" stroke-width="2"/>
+                            <path d="M0,0 L20,15 M20,0 L0,15" stroke="#C8102E" stroke-width="1"/>
+                            <rect x="8" y="0" width="4" height="15" fill="#FFFFFF"/>
+                            <rect x="0" y="6" width="20" height="3" fill="#FFFFFF"/>
+                            <rect x="9" y="0" width="2" height="15" fill="#C8102E"/>
+                            <rect x="0" y="7" width="20" height="1" fill="#C8102E"/>
+                        </svg>
+                    </span>
+                    <span class="lang-text">EN</span>
+                </button>
+                <button class="lang-btn" data-lang="ja">
+                    <span class="flag-icon">
+                        <svg width="20" height="15" viewBox="0 0 20 15" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="20" height="15" fill="#FFFFFF"/>
+                            <circle cx="10" cy="7.5" r="4" fill="#BC002D"/>
+                        </svg>
+                    </span>
+                    <span class="lang-text">JPN</span>
+                </button>
+            </div>
+
+            <!-- Borobudur Background Container -->
+            <div class="borobudur-container">
+                <img src="../assets/images/borobudur-bg.svg" alt="Candi Borobudur" id="borobudurImage">
+                
+                <!-- Spotlight points -->
+                <div class="spotlight spot-1" data-instrument="gamelan" style="top: 25%; left: 20%;"></div>
+                <div class="spotlight spot-2" data-instrument="angklung" style="top: 35%; left: 75%;"></div>
+                <div class="spotlight spot-3" data-instrument="sasando" style="top: 60%; left: 30%;"></div>
+                <div class="spotlight spot-4" data-instrument="kendang" style="top: 70%; left: 65%;"></div>
+                <div class="spotlight spot-5" data-instrument="suling" style="top: 45%; left: 50%;"></div>
+            </div>
+
+            <!-- Cards Container -->
+            <div class="cards-container" id="cardsContainer">
+                <div class="cards-slider-container">
+                    <button class="slider-close-btn" id="sliderCloseBtn">×</button>
+                    
+                    <div class="slider-navigation">
+                        <button class="nav-btn" id="prevBtn">‹</button>
+                        <button class="nav-btn" id="nextBtn">›</button>
+                    </div>
+                    
+                    <div class="cards-slider" id="cardsSlider">
+                        <!-- Cards will be dynamically inserted here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Panel -->
+        <div class="right-panel" id="rightPanel">
+            <button class="back-btn" id="backBtn">← Kembali</button>
+            <div class="instrument-cards" id="instrumentCards">
+                <!-- Instrument cards will be dynamically inserted here -->
+            </div>
+            <div class="slider-container">
+                <div class="cards-slider" id="cardsSlider">
+                    <!-- Slider cards will be dynamically inserted here -->
+                </div>
+                <div class="slider-indicators" id="sliderIndicators">
+                    <!-- Slider indicators will be dynamically inserted here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="instrumentModal">
+        <div class="modal-content">
+            <button class="close-btn" id="closeModal">×</button>
+            <div class="modal-body">
+                <div class="instrument-images">
+                    <img id="modalMainImage" src="" alt="">
+                    <div class="additional-images" id="additionalImages">
+                        <!-- Additional images will be inserted here -->
+                    </div>
+                </div>
+                <div class="instrument-info">
+                    <h2 id="modalTitle"></h2>
+                    <p id="modalDescription"></p>
+                    <button class="play-btn" id="playAudioBtn">
+                        <span class="play-icon">▶</span>
+                        <span id="playBtnText">Putar Suara</span>
+                    </button>
+                    <audio id="instrumentAudio" preload="none">
+                        <source src="" type="audio/mpeg">
+                        Browser Anda tidak mendukung audio.
+                    </audio>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../assets/js/data.js"></script>
+    <script src="../assets/js/script.js"></script>
+</body>
+</html>

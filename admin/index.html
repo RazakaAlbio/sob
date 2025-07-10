@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Sound of Borobudur</title>
+    <link rel="stylesheet" href="../assets/css/admin-styles.css">
+</head>
+<body>
+    <div class="admin-container">
+        <header class="admin-header">
+            <h1>Admin Panel - Sound of Borobudur</h1>
+            <nav class="admin-nav">
+                <button class="nav-btn active" data-section="dashboard">Dashboard</button>
+                <button class="nav-btn" data-section="manage-instruments">Kelola Instrumen</button>
+                <button class="nav-btn" data-section="settings">Pengaturan</button>
+            </nav>
+        </header>
+
+        <main class="admin-main">
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="admin-section active">
+                <h2>Dashboard</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Total Instrumen</h3>
+                        <p class="stat-number" id="totalInstruments">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Instrumen Aktif</h3>
+                        <p class="stat-number" id="activeInstruments">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Total Audio</h3>
+                        <p class="stat-number" id="totalAudio">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Total Gambar</h3>
+                        <p class="stat-number" id="totalImages">0</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Manage Instruments Section -->
+            <section id="manage-instruments" class="admin-section">
+                <h2>Kelola Instrumen</h2>
+                
+                <!-- Add/Edit Form -->
+                <div class="form-container">
+                    <h3 id="formTitle">Tambah Instrumen Baru</h3>
+                    <form id="instrumentForm" enctype="multipart/form-data">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="name_id">Nama (Indonesia):</label>
+                                <input type="text" id="name_id" name="name_id" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="name_en">Nama (English):</label>
+                                <input type="text" id="name_en" name="name_en" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="name_ja">Nama (Japanese):</label>
+                                <input type="text" id="name_ja" name="name_ja" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="description_id">Deskripsi (Indonesia):</label>
+                            <textarea id="description_id" name="description_id" rows="3" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="description_en">Deskripsi (English):</label>
+                            <textarea id="description_en" name="description_en" rows="3" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="description_ja">Deskripsi (Japanese):</label>
+                            <textarea id="description_ja" name="description_ja" rows="3" required></textarea>
+                        </div>
+                        
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="main_image">Gambar Utama:</label>
+                                <input type="file" id="main_image" name="main_image" accept="image/*">
+                                <div id="mainImagePreview" class="image-preview"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="additional_images">Gambar Tambahan:</label>
+                                <input type="file" id="additional_images" name="additional_images[]" accept="image/*" multiple>
+                                <div id="additionalImagesPreview" class="image-preview"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="audio_file">File Audio:</label>
+                            <input type="file" id="audio_file" name="audio_file" accept="audio/*">
+                            <div id="audioPreview" class="audio-preview"></div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" id="submitBtn">Tambah Instrumen</button>
+                            <button type="button" id="cancelBtn" style="display: none;">Batal</button>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Instruments List -->
+                <div class="instruments-list">
+                    <h3>Daftar Instrumen</h3>
+                    <div id="instrumentsList">
+                        <!-- Instruments will be loaded here -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Settings Section -->
+            <section id="settings" class="admin-section">
+                <h2>Pengaturan</h2>
+                <div class="settings-grid">
+                    <div class="setting-card">
+                        <h3>Pengaturan Umum</h3>
+                        <p>Konfigurasi pengaturan aplikasi</p>
+                    </div>
+                    <div class="setting-card">
+                        <h3>Backup Data</h3>
+                        <p>Backup dan restore data instrumen</p>
+                    </div>
+                    <div class="setting-card">
+                        <h3>Log Aktivitas</h3>
+                        <p>Lihat log aktivitas sistem</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-spinner"></div>
+        <p id="loadingMessage">Memproses...</p>
+    </div>
+
+    <script src="../assets/js/admin-script.js"></script>
+</body>
+</html>

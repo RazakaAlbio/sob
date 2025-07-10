@@ -1,362 +1,193 @@
-# Sound of Borobudur - UI/UX Design Documentation
+# Sound of Borobudur - Interactive Musical Instrument Exhibition
 
-## Overview
-Interactive exhibition website showcasing traditional Indonesian musical instruments with immersive Borobudur temple experience.
+Sebuah aplikasi web interaktif yang menampilkan pameran alat musik tradisional Indonesia dengan desain yang dioptimalkan untuk tablet dan mendukung multi-bahasa.
 
-## Container Sizes & Layout Specifications
+## 📁 Struktur Proyek
 
-### 🖥️ Desktop (1200px and above)
+```
+Kemenbud/
+├── 📁 public/                    # Frontend utama
+│   └── index.html                # Halaman utama aplikasi
+├── 📁 admin/                     # Panel administrasi
+│   └── index.html                # Interface admin
+├── 📁 backend/                   # Server-side logic
+│   ├── config.php                # Konfigurasi database
+│   ├── admin-handler.php         # API handler untuk admin
+│   ├── get-instruments.php       # API untuk mengambil data instrumen
+│   └── database.sql              # Setup database
+├── 📁 assets/                    # Aset statis
+│   ├── 📁 css/                   # Stylesheet
+│   │   ├── styles.css            # Style utama aplikasi
+│   │   └── admin-styles.css      # Style panel admin
+│   ├── 📁 js/                    # JavaScript files
+│   │   ├── script.js             # Logic utama aplikasi
+│   │   ├── admin-script.js       # Logic panel admin
+│   │   └── data.js               # Data instrumen (fallback)
+│   ├── 📁 images/                # Gambar dan ikon
+│   │   ├── borobudur-bg.svg      # Background Borobudur
+│   │   ├── gamelan-main.svg      # Ilustrasi Gamelan
+│   │   ├── angklung-main.svg     # Ilustrasi Angklung
+│   │   ├── sasando-main.svg      # Ilustrasi Sasando
+│   │   └── suling-main.svg       # Ilustrasi Suling
+│   └── 📁 audio/                 # File audio instrumen
+│       └── placeholder.txt       # Placeholder untuk file audio
+├── database.sql                  # SQL setup (legacy)
+├── start-server.bat             # Batch file untuk memulai server
+└── README.md                     # Dokumentasi proyek
+```
 
-#### Main Layout
-- **Viewport**: Full screen (100vw × 100vh)
-- **Background**: Linear gradient overlay on full viewport
-- **Main Container**: No max-width restriction
+## 🚀 Cara Menjalankan
+
+### Prasyarat
+- XAMPP atau server web dengan PHP 7.4+
+- MySQL/MariaDB
+- Browser modern (Chrome, Firefox, Safari, Edge)
+
+### Setup Database
+1. Buka phpMyAdmin atau MySQL client
+2. Import file `backend/database.sql`
+3. Sesuaikan konfigurasi database di `backend/config.php`
+
+### Menjalankan Aplikasi
+1. Pastikan XAMPP Apache dan MySQL sudah berjalan
+2. Akses aplikasi utama: `http://localhost/Kemenbud/public/`
+3. Akses panel admin: `http://localhost/Kemenbud/admin/`
+
+## 🎯 Fitur Utama
+
+### Aplikasi Utama (`/public/`)
+- **Landing Page Interaktif**: Tampilan utama dengan background Borobudur
+- **Koleksi Instrumen**: Showcase 4+ alat musik tradisional Indonesia
+- **Multi-bahasa**: Dukungan Bahasa Indonesia, English, dan Japanese
+- **Interface Responsif**: Dioptimalkan untuk tablet (768px-1024px)
+- **Audio Player**: Pemutaran suara instrumen (jika tersedia)
+- **Modal Detail**: Informasi lengkap setiap instrumen
+- **Slider Carousel**: Navigasi antar instrumen yang smooth
+
+### Panel Admin (`/admin/`)
+- **Dashboard**: Statistik dan overview sistem
+- **Manajemen Instrumen**: CRUD operations untuk data instrumen
+- **Upload Media**: Upload gambar dan file audio
+- **Multi-bahasa**: Input dalam 3 bahasa sekaligus
+- **Preview Real-time**: Preview gambar dan audio sebelum save
+
+## 🎨 Spesifikasi UI/UX untuk Designer
+
+### Breakpoints Utama
+- **Desktop**: 1200px ke atas
+- **Tablet Landscape**: 1024px - 1200px
+- **Tablet Portrait**: 768px - 1024px
+- **Mobile**: 768px ke bawah
+
+### Container Dimensions
 
 #### Header Components
-- **Main Title Container**: 
-  - Position: Fixed, centered horizontally
-  - Top offset: 50px
-  - Transform: translateX(-50%)
-  - Z-index: 1000
+- **Main Title**: 
+  - Desktop: `font-size: 4rem`, `max-width: 800px`
+  - Tablet: `font-size: 3rem`, `max-width: 600px`
+  - Mobile: `font-size: 2rem`, `max-width: 90%`
 
-- **Title Text (H1)**:
-  - Font size: 2rem
-  - Letter spacing: 3px
-  - Margin: 0
-
-- **Subtitle Text (P)**:
-  - Font size: 0.8rem
-  - Letter spacing: 1.5px
-  - Margin: 2px 0 0 0
-
-- **Language Toggle**:
-  - Position: Fixed top-left
-  - Top: 10px, Left: 20px
-  - Button size: Auto padding (6px 10px)
-  - Gap between buttons: 8px
+- **Language Toggle**: 
+  - Container: `gap: 15px`
+  - Buttons: `min-width: 120px`, `height: 50px`
+  - Mobile: `min-width: 100px`, `height: 45px`
 
 #### Interactive Elements
-- **Borobudur Image Container**:
-  - Max width: 800px
-  - Max height: 600px
-  - Border radius: 15px
-  - Border: 3px solid rgba(212, 175, 55, 0.4)
+- **Spotlight Effect**: `300px × 300px` (desktop), `250px × 250px` (tablet)
+- **Cards Container**: Full viewport dengan `backdrop-filter: blur(10px)`
+- **Instrument Cards**: 
+  - Desktop: `400px × 500px`
+  - Tablet: `350px × 450px`
+  - Mobile: `300px × 400px`
 
-- **Spotlight Points**:
-  - Size: 30px × 30px
-  - Border radius: 50% (circular)
-  - Border: 1px solid #d4af37
-  - Hover scale: 1.2
-  - Active scale: 1.3
-  - Zoomed scale: 1.5
-
-#### Cards & Modals
-- **Cards Container**:
-  - Height: 250px
-  - Padding: 30px
-  - Margin: 0 40px
-  - Gap: 20px (carousel mode)
-
-- **Instrument Card**:
-  - Min width: 350px
-  - Height: 190px
-  - Padding: 30px
-  - Border radius: 15px
-  - Border: 2px solid rgba(212, 175, 55, 0.4)
-
-- **Modal Content**:
-  - Max width: 800px
-  - Width: 95%
-  - Max height: 90vh
-  - Padding: 30px
-  - Border radius: 20px
-  - Border: 3px solid rgba(212, 175, 55, 0.8)
-
-- **Modal Body Grid**:
-  - Grid: 1fr 1fr (two columns)
-  - Gap: 50px
-  - Padding: 50px
+#### Modal Components
+- **Modal Content**: 
+  - Desktop: `max-width: 800px`
+  - Tablet: `max-width: 90vw`
+  - Mobile: `max-width: 95vw`
 
 #### Slider Components
-- **Slider Card**:
-  - Width: 320px
-  - Height: 220px
-  - Padding: 30px
-  - Border radius: 15px
+- **Slider Container**: Full viewport height
+- **Slider Cards**: 
+  - Desktop: `350px × 450px`
+  - Tablet: `300px × 400px`
+  - Mobile: `280px × 380px`
 
-- **Navigation Buttons**:
-  - Size: 55px × 55px
-  - Border radius: 12px
-  - Border: 2px solid rgba(212, 175, 55, 0.5)
+### Design Guidelines untuk Figma
 
-### 📱 Tablet Portrait (768px - 1024px)
+#### Frame Recommendations
+- **Desktop Frame**: 1440px × 900px
+- **Tablet Landscape**: 1024px × 768px
+- **Tablet Portrait**: 768px × 1024px
+- **Mobile Frame**: 375px × 812px
 
-#### Header Adjustments
-- **Title Text (H1)**:
-  - Font size: 1.8rem
-  - Letter spacing: 2px
+#### Grid System
+- **Desktop**: 12-column grid, 80px gutters
+- **Tablet**: 8-column grid, 60px gutters
+- **Mobile**: 4-column grid, 20px gutters
 
-- **Subtitle Text (P)**:
-  - Font size: 0.75rem
+#### Spacing Scale
+- **XS**: 8px
+- **SM**: 16px
+- **MD**: 24px
+- **LG**: 32px
+- **XL**: 48px
+- **XXL**: 64px
 
-- **Language Toggle**:
-  - Top: 15px, Left: 15px
-  - Button padding: 8px 12px
-  - Font size: 0.9rem
+#### Color Palette
+- **Primary**: Warm earth tones (browns, golds)
+- **Secondary**: Traditional Indonesian colors
+- **Accent**: Highlight colors for interactive elements
+- **Background**: Gradient overlays with transparency
 
-#### Interactive Elements
-- **Borobudur Container**:
-  - Max width: 90%
-  - Centered with auto margins
-
-- **Spotlight Points**:
-  - Size: 20px × 20px
-
-#### Cards & Layout
-- **Cards Container**:
-  - Height: 200px
-  - Padding: 20px
-  - Margin: 0 20px
-
-- **Instrument Card**:
-  - Min width: 280px
-  - Height: 160px
-  - Padding: 20px
-
-- **Card Title**:
-  - Font size: 1.3rem
-  - Margin bottom: 12px
-
-- **Card Description**:
-  - Font size: 15px
-  - Min height: 70px
-  - Line height: 1.6
-
-#### Modal Adjustments
-- **Modal Main Image**:
-  - Height: 250px
-
-- **Modal Body Grid**:
-  - Grid: 1fr 1fr
-  - Gap: 30px
-  - Padding: 30px
-
-#### Slider Adjustments
-- **Slider Card**:
-  - Min width: 260px
-  - Height: 180px
-  - Padding: 20px
-
-### 🖥️ Tablet Landscape (1024px - 1200px)
-
-#### Header
-- **Title Text (H1)**:
-  - Font size: 2.1rem
-  - Letter spacing: 2.5px
-
-#### Interactive Elements
-- **Borobudur Container**:
-  - Max width: 90%
-
-- **Spotlight Points**:
-  - Size: 25px × 25px
-
-#### Cards & Layout
-- **Cards Container**:
-  - Height: 210px
-  - Padding: 22px
-  - Margin: 0 25px
-
-- **Instrument Card**:
-  - Min width: 300px
-  - Height: 165px
-  - Padding: 22px
-
-- **Card Title**:
-  - Font size: 1.35rem
-
-#### Modal & Slider
-- **Modal Body Grid**:
-  - Gap: 35px
-  - Padding: 35px
-
-- **Slider Card**:
-  - Min width: 280px
-  - Height: 190px
-  - Padding: 22px
-
-### 📱 Mobile (max-width: 768px)
-
-#### Header Mobile
-- **Title Text (H1)**:
-  - Font size: 1.5rem
-  - Letter spacing: 1px
-
-- **Subtitle Text (P)**:
-  - Font size: 0.7rem
-
-- **Language Toggle**:
-  - Top: 10px, Left: 10px
-  - Gap: 5px
-  - Button padding: 5px 8px
-  - Font size: 0.8rem
-
-#### Interactive Elements Mobile
-- **Spotlight Points**:
-  - Size: 45px × 45px (larger for touch)
-
-#### Cards Mobile
-- **Cards Container**:
-  - Height: 180px
-  - Padding: 15px
-  - Margin: 0 10px
-
-- **Instrument Card**:
-  - Min width: 220px
-  - Height: 130px
-  - Padding: 15px
-
-- **Card Title**:
-  - Font size: 1.1rem
-  - Margin bottom: 8px
-
-- **Card Description**:
-  - Font size: 13px
-  - Min height: 50px
-
-- **Action Button**:
-  - Padding: 8px 16px
-  - Font size: 12px
-
-#### Modal Mobile
-- **Modal Body Grid**:
-  - Grid: 1fr (single column)
-  - Gap: 20px
-  - Padding: 20px
-
-- **Modal Main Image**:
-  - Height: 200px
-
-- **Additional Images**:
-  - Size: 80px × 80px
-
-#### Slider Mobile
-- **Slider Card**:
-  - Min width: 200px
-  - Height: 150px
-  - Padding: 15px
-
-- **Slider Card Title**:
-  - Font size: 1rem
-  - Margin bottom: 8px
-
-- **Slider Card Description**:
-  - Font size: 12px
-  - Min height: 40px
-
-## 🎨 Touch Device Optimizations
-
-### Minimum Touch Targets (44px × 44px)
-- Language buttons
-- Action buttons (Start Adventure, Back, Play)
-- Close buttons
-- Navigation buttons (min 50px × 50px)
-- Additional image thumbnails (min 60px × 60px)
-
-### Enhanced Touch Areas
-- **Spotlight Points**: Minimum 40px × 40px on touch devices
-- **All Interactive Elements**: Minimum 44px touch target
-
-## 🎯 Design Guidelines for Figma
-
-### Breakpoint Strategy
-1. **Mobile First**: Start with 375px width
-2. **Tablet Portrait**: 768px - 1024px
-3. **Tablet Landscape**: 1024px - 1200px
-4. **Desktop**: 1200px and above
-
-### Grid System
-- **Desktop**: 2-column grid for modal content
-- **Tablet**: 2-column grid maintained
-- **Mobile**: Single column layout
-
-### Spacing Scale
-- **Large**: 50px (desktop modal padding)
-- **Medium**: 30px (desktop card padding)
-- **Small**: 20px (tablet padding)
-- **XSmall**: 15px (mobile padding)
-
-### Component Scaling
-- **Cards**: Scale down proportionally across breakpoints
-- **Typography**: Responsive font sizes with maintained hierarchy
-- **Interactive Elements**: Larger on mobile for touch accessibility
-
-### Color Palette
-- **Primary Gold**: #d4af37
-- **Secondary Gold**: #b8860b
-- **Accent Gold**: #ffd700
-- **Background Dark**: #2c1810
-- **Background Medium**: #4a3728
-- **Text Light**: #f4e4c1
-
-### Border Radius Standards
+#### Border Radius
 - **Cards**: 15px
-- **Modals**: 20px
-- **Buttons**: 8px - 20px (varies by component)
-- **Circular Elements**: 50%
-
-## 📐 Figma Frame Recommendations
-
-### Desktop Frames
-- **1920 × 1080** (Full HD)
-- **1440 × 900** (MacBook Pro)
-- **1366 × 768** (Common laptop)
-
-### Tablet Frames
-- **1024 × 768** (iPad Landscape)
-- **768 × 1024** (iPad Portrait)
-- **834 × 1194** (iPad Pro Portrait)
-
-### Mobile Frames
-- **375 × 667** (iPhone SE/8)
-- **390 × 844** (iPhone 12/13)
-- **414 × 896** (iPhone 11 Pro Max)
+- **Buttons**: 25px
+- **Modal**: 20px
+- **Images**: 10px
 
 ## 🔧 Technical Notes
 
-### CSS Units Used
-- **rem**: For scalable typography
-- **px**: For precise borders and fixed elements
-- **vh/vw**: For full viewport layouts
-- **%**: For responsive widths
+### CSS Architecture
+- **Units**: Menggunakan `rem` untuk typography, `px` untuk borders
+- **Flexbox**: Layout utama menggunakan flexbox
+- **CSS Grid**: Untuk layout kompleks di admin panel
+- **Custom Properties**: CSS variables untuk konsistensi warna
 
-### Animation Specifications
-- **Transition Duration**: 0.3s - 0.8s
-- **Easing**: cubic-bezier(0.4, 0, 0.2, 1)
-- **Transform Origin**: Center for scaling
-- **Backdrop Filter**: blur(10px - 15px)
+### JavaScript Architecture
+- **Vanilla JS**: Tidak menggunakan framework eksternal
+- **Modular**: Fungsi terpisah untuk setiap fitur
+- **Event-driven**: Event listeners untuk interaksi user
+- **Async/Await**: Untuk API calls
 
-### Z-Index Hierarchy
-- **Background**: 0
-- **Content**: 1-10
-- **Spotlights**: 10
-- **Navigation**: 15-20
-- **Modals**: 100-1000
-- **Fixed Headers**: 1000+
+### Database Schema
+- **instruments**: Tabel utama untuk data instrumen
+- **admin_users**: Tabel untuk autentikasi admin (opsional)
+- **activity_logs**: Log aktivitas sistem (opsional)
 
-## 📋 Admin Panel Specifications
+### API Endpoints
+- `GET /backend/get-instruments.php` - Mengambil semua instrumen
+- `POST /backend/admin-handler.php?action=add_instrument` - Tambah instrumen
+- `POST /backend/admin-handler.php?action=update_instrument` - Update instrumen
+- `POST /backend/admin-handler.php?action=delete_instrument` - Hapus instrumen
+- `GET /backend/admin-handler.php?action=get_instruments` - Admin: ambil instrumen
 
-### Admin Interface Components
-- **Navigation Tabs**: Full width, responsive
-- **Form Containers**: Max width with centered alignment
-- **Input Fields**: Standard form sizing with proper spacing
-- **File Upload Areas**: Drag & drop zones with preview
-- **Data Tables**: Responsive with horizontal scroll on mobile
-- **Action Buttons**: Consistent sizing and spacing
+## 📱 Browser Support
+- Chrome 80+
+- Firefox 75+
+- Safari 13+
+- Edge 80+
 
-### Admin Modal Sizes
-- **Standard Modal**: 600px max width
-- **Large Modal**: 800px max width for detailed forms
-- **Mobile Modal**: Full width with padding
+## 🔒 Security Features
+- Input validation dan sanitization
+- File upload restrictions
+- SQL injection protection (PDO prepared statements)
+- XSS protection
+- CORS headers configuration
 
-This documentation provides comprehensive sizing information for creating pixel-perfect designs in Figma that will translate accurately to the final implementation.
+## 📄 License
+Project ini dikembangkan untuk Kementerian Pendidikan dan Kebudayaan Indonesia.
+
+---
+
+**Catatan**: Struktur folder ini telah diorganisir untuk memisahkan frontend, backend, admin, dan assets agar lebih mudah dalam maintenance dan development.

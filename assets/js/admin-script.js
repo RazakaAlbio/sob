@@ -104,7 +104,7 @@ function handleFormSubmit(e) {
     }
     
     // Send data to server
-    fetch('admin-handler.php', {
+    fetch('../backend/admin-handler.php', {
         method: 'POST',
         body: formData
     })
@@ -152,7 +152,7 @@ function loadInstruments() {
     // Show loading
     instrumentsList.innerHTML = '<div class="file-info">Loading instruments...</div>';
 
-    fetch('admin-handler.php?action=get_instruments')
+    fetch('../backend/admin-handler.php?action=get_instruments')
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
@@ -259,7 +259,7 @@ function deleteInstrument(id, name) {
 
     showMessage('Deleting instrument...', 'info');
 
-    fetch('admin-handler.php', {
+    fetch('../backend/admin-handler.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
